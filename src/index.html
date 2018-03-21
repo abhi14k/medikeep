@@ -21,9 +21,22 @@
     
       <form onSubmit="App.handleAdopt(); return false;">
       <input type="text" id="a"/>
+      <input type="text" id="b"/>
       <button type="submit">Adopt</button>
       </form>
       <p id="accountAddress" class="text-center"></p>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Votes</th>
+          </tr>
+        </thead>
+        <tbody id="candidatesResults">
+        </tbody>
+      </table>
   
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

@@ -55,6 +55,24 @@ App = {
       }
     });
 
+    var candidatesResults = $("#candidatesResults");
+    candidatesResults.empty();
+   App.contracts.Adoption.deployed().then(function(instance){  
+    instance.Mans(App.account).then(function(candidate) {
+      var c =  candidate[0];
+      var b =  candidate[1];
+      // Render candidate Result
+      var candidateTemplate = "<tr><th>" + c + "</th><td>" + b + "</td><td>" + "sss" + "</td></tr>"
+      candidatesResults.append(candidateTemplate);
+
+      // Render candidate ballot option
+      //var candidateOption = "<option value='" + id + "' >" + name + "</ option>"
+      //candidatesSelect.append(candidateOption);
+    });
+   });
+    
+   
+
     $(document).on('click', '.btn-adopt', App.handleAdopt);
   },
 
@@ -66,9 +84,10 @@ App = {
 
   handleAdopt: function(event) {
     var name = $('#a').val();
+    var id = $('#b').val();
     
     App.contracts.Adoption.deployed().then(function(instance) {
-      return instance.saveHashcode(name,{ from: App.account });
+      return instance.saveHashcode(App.account,name,id);
     }).then(function(result) {
       // Wait for votes to update
       $("#content").hide();
